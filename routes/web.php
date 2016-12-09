@@ -10,10 +10,3 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
-Route::group(['prefix' => 'api'], function () {
-  Route::group(['prefix' => 'v1'], function () {
-    Route::resource('test-connection', 'TestController');
-
-  });
-});
