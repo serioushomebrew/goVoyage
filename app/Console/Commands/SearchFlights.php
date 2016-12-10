@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 
 use \App\GoVoyage\Library\SchipholApi;
+use \App\GoVoyage\Library\KLMApi;
 
 class SearchFlights extends Command
 {
@@ -53,12 +54,24 @@ class SearchFlights extends Command
             $endDate = $this->ask('End date (dd-mm-yyyy)');
         }
 
-        $schiphol = new SchipholApi(env('SCHIPHOL_API_ENDPOINT'), env('SCHIPHOL_API_ID'), env('SCHIPHOL_API_KEY'));
+        $klm = new KLMApi(env('KLM_API_ENDPOINT'), env('KLM_API_ID'), env('KLM_API_KEY'));
 
-        $res = $schiphol->request('/public-flights/flights', [
-            'fromdate' => '2016-12-11',
-            // 'includedelays' => false,
+        $res = $klm->request('/travel/locations/cities', [
+            'expand' => 'lowest-face',
+            'pageSize' => 2,
+            'country' => 'NL',
+            'origins' => 'AMS',
+            // ''
         ]);
+
+        // $schiphol = new SchipholApi(env('SCHIPHOL_API_ENDPOINT'), env('SCHIPHOL_API_ID'), env('SCHIPHOL_API_KEY'));
+        //
+        // $res = $schiphol->request('/public-flights/flights', [
+        //     'fromdate' => '2016-12-11',
+        //     // 'includedelays' => false,
+        // ]);
+
+        dd($res);
 
         dd(json_decode($res));
     }
