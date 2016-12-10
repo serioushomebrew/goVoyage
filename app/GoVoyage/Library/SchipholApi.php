@@ -46,6 +46,11 @@ class SchipholApi
 
     /**
      * Send a api request to the Schiphol API service
+     *
+     * For example $schiphol->request('/public-flights/flights', [
+     *     'includedelays' => false,
+     * ]);
+     *
      * @param  string $command The location of the API
      * @param  array  $params  Optional parameters for the request
      * @return string          The response from the api service
