@@ -35,6 +35,8 @@ class Flights
         if ($klmFlights && $klmFlights->_embedded) {
             $flights = collect($klmFlights->_embedded)->reduce(function ($carry, $item) {
                 // dd($item);
+                // dd($carry);
+
                 $carry->push([
                     // Origin
                     'origin' => [
@@ -70,41 +72,60 @@ class Flights
                 return $carry;
             }, $flights);
         }
+        // dd($flights);
 
-        // $transavia = new TransaviaApi(env('TRANSAVIA_API_ENDPOINT'), env('TRANSAVIA_API_ID'), env('TRANSAVIA_API_KEY'));
-        // $transaviaFlights = $transavia->request('/v1/flightoffers', [
-        //     'origin' => 'AMS',
-        //     'origindeparturedate' => $startDate->format('Ymd'),
-        //     'destinationdeparturedate' => $endDate->format('Ymd'),
-        //     'adults' => 1,
-        //     'price' => '0-1000',
-        //     'lowestpriceperdestination' => true,
-        //     'limit' => '1000',
-        //     'orderby' => 'Price',
-        // ]);
-        //
-        // if ($transaviaFlights && $transaviaFlights->flightOffer) {
-        //     $flights = collect($transaviaFlights->flightOffer)->reduce(function ($carry, $item) {
-        //         // dd($item);
-        //         $carry->push([
-        //             'origin_code' => $item->outboundFlight->departureAirport->locationCode,
-        //             'origin_name' => null,
-        //             'origin_description' => null,
-        //             'country_code' => null,
-        //             'country_name' => null,
-        //             'country_description' => null,
-        //             'departure_date' => null,
-        //             'return_date' => null,
-        //             'price' => null,
-        //             'currency' => null,
-        //         ]);
-        //         return $carry;
-        //     }, $flights);
-        // }
+        $transavia = new TransaviaApi(env('TRANSAVIA_API_ENDPOINT'), env('TRANSAVIA_API_ID'), env('TRANSAVIA_API_KEY'));
+        $transaviaFlights = $transavia->request('/v1/flightoffers', [
+            'origin' => 'AMS',
+            'origindeparturedate' => $startDate->format('Ymd'),
+            'destinationdeparturedate' => $endDate->format('Ymd'),
+            'adults' => $passengers,
+            'price' => '0-'.($maxBudget / 2), //@NOTE: $maxBudget is per flight (not retour)
+            'lowestpriceperdestination' => true,
+            'limit' => 1000,
+            'orderby' => 'Price',
+        ]);
+        if ($transaviaFlights) {
+            // dd($transaviaFlights);
+            $flights = collect($transaviaFlights->flightOffer)->reduce(function ($carry, $item) {
+                // dd($carry);
+                $carry->push([
+                    // Origin
+                    'origin' => [
+                        // @TODO: may need to do extra call for detailed airport info
+                        'code' => $item->outboundFlight->departureAirport->locationCode,
+                        'name' => null,
+                        'description' => null,
+                    ],
+
+                    // Destination
+                    'destination' => [
+                        'code' => $item->outboundFlight->arrivalAirport->locationCode,
+                        'name' => null,
+                        'description' => null,
+                    ],
+
+                    // Pricing
+                    'pricing' => [
+                        'price' => $item->pricingInfoSum->totalPriceAllPassengers,
+                        'currency' => $item->pricingInfoSum->currencyCode,
+                    ],
+
+                    // Dates
+                    'dates' => [
+                        'departure' => Carbon::createFromFormat('Y-m-d\TH:i:s', $item->outboundFlight->departureDateTime),
+                        'return' => Carbon::createFromFormat('Y-m-d\TH:i:s', $item->inboundFlight->departureDateTime),
+                    ],
+                ]);
+                return $carry;
+            }, $flights);
+        }
+        // dd($flights);
 
         // Filter all flights which are longer than the return date
+        $endDate->addDay(); // add support for flights on the endDate day itself
         $flights = $flights->filter(function ($item) use (&$endDate) {
-            return $endDate->lt($item['dates']['return']);
+            return $endDate->gt($item['dates']['return']);
         });
 
         // Fetch all
