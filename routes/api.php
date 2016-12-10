@@ -16,6 +16,16 @@ use Illuminate\Http\Request;
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
 // })->middleware('auth:api');
-Route::group(['prefix' => 'v1'], function () {
-  Route::resource('test-connection', 'TestController');
+
+// Route::group(['prefix' => 'v1'], function () {
+//     Route::resource('test-connection', 'TestController');
+// });
+
+Route::group([
+    'namespace' => 'Api',
+    'as' => 'api',
+], function () {
+    Route::post('/searchflights', [
+        'uses' => 'SearchFlightsController@search',
+    ]);
 });
