@@ -132,6 +132,8 @@ class Flights
             }
 
             return $item;
+        })->filter(function ($item) use (&$temperature) {
+            return abs($item['weather']['temp'] - $temperature) < 4;
         });
 
         return $flights;
