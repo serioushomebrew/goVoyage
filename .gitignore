@@ -1,21 +1,28 @@
 vendor/
 node_modules/
+Homestead.yml
+Homestead.json
+.env
+.vagrant/
+*.DS_Store
+*.swp
+
+
 
 # Laravel 4 specific
-bootstrap/compiled.php
-app/storage/
+#bootstrap/compiled.php
+#app/storage/
 
 # Laravel 5 & Lumen specific
-bootstrap/cache/
-.env.*.php
-.env.php
-.env
+#bootstrap/cache/
+#.env.*.php
+#.env.php
+#.env
 
 # MacOS Stuff (Sorry guys, for using MacOS..)
 *.DS_Store
 
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/
-
 .idea/
 

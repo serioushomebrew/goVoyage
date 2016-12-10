@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\ApiTest::class,
         \App\Console\Commands\ApiKlmFlights::class,
+        \App\Console\Commands\SearchFlights::class,
     ];
 
     /**
