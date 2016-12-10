@@ -51,14 +51,13 @@
               <div class="content">
                 <h1><strong>GoVoyage</strong></h1>
                 <h2>Discover new places everyday</h2>
-<p>Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't, become nothing. She starred in one of the ones that became nothing. </p>
+<p>Geef de controle weg en laat GoVoyage jou inspireren voor je volgende reis. Waarom zou je alles helemaal tot in de detail plannen als een app dit voor jou kan doen? Jij hoeft alleen jouw voorkeur door te geven in GoVoyage. Wil jij graag een bestemming waar het rond de 25 graden is in juni 2017 en heb jij €200 te besteden voor een vliegticket. GoVoyage regelt het voor jou en laat je verrassen!</p>
                 <div class="button" id="download-app1">
                   <a href="#download" class="btn btn-default btn-lg custom-btn"><i class="fa fa-cloud-download"></i>Download App</a>
                 </div> <!-- end .button -->
               </div> <!-- end .content -->
             </div> <!-- end .top > .container> .row> .col-md-7 -->
-
-            <div class="col-sm-6 col-md-6">
+             <div class="col-sm-6 col-md-6">
               <div class="photo-slide">
                <div id="carousel" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
