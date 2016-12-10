@@ -4,7 +4,7 @@ namespace App\GoVoyage\Library;
 
 use \GuzzleHttp\Client as HttpClient;
 
-class SchipholApi
+class TransaviaApi
 {
     /**
      * The endpoint HTTP API location
@@ -13,13 +13,13 @@ class SchipholApi
     protected $endpoint = null;
 
     /**
-     * The Schiphol Api id used to authorize
+     * The Transavia Api id (Consumer Key) used to authorize
      * @var string
      */
     protected $apiId = null;
 
     /**
-     * The Schiphol Api key used to authorize
+     * The Transavia Api key (Consumer Secret) used to authorize
      * @var string
      */
     protected $apiKey = null;
@@ -31,7 +31,7 @@ class SchipholApi
     protected $client = null;
 
     /**
-     * Create the Schiphol Api handler
+     * Create the Transavia Api handler
      * @param string $apiId  [description]
      * @param string $apiKey [description]
      */
@@ -45,11 +45,19 @@ class SchipholApi
     }
 
     /**
-     * Send a api request to the Schiphol API service
+     * Send a api request to the Transavia API service
      *
-     * For example $schiphol->request('/public-flights/flights', [
-     *     'includedelays' => false,
+     * For example $transavia->request('/v1/flightoffers', [
+     *     'origin' => 'AMS',
+     *     'origindeparturedate' => '20161220',
+     *     'destinationdeparturedate' => '20170120',
+     *     'adults' => 1,
+     *     'price' => '0-100',
+     *     'lowestpriceperdestination' => true,
+     *     'limit' => '1000',
+     *     'orderby' => 'Price',
      * ]);
+     *
      *
      * @param  string $command The location of the API
      * @param  array  $params  Optional parameters for the request
@@ -57,20 +65,16 @@ class SchipholApi
      */
     public function request(string $command, array $params = null)
     {
-        $params = http_build_query(array_merge([
-            'app_id' => $this->apiId,
-            'app_key' => $this->apiKey,
-        ], $params));
+        $params = http_build_query($params);
 
         // @TODO: There has to be a PHP method for this, right?
         $endpoint = $this->endpoint . $command . '?' . $params;
 
         try {
-            dd($endpoint);
             $response = $this->client->request('GET', $endpoint, [
                 'headers' => [
                     'Accept' => 'application/json',
-                    'ResourceVersion' => 'v3',
+                    'apikey' => $this->apiId,
                 ],
                 'connect_timeout' => 10,
             ]);
@@ -81,6 +85,6 @@ class SchipholApi
         }
 
         // @TODO: Handle errors
-        return json_decode($response->getBody()->getContents());
+        return $response->getBody()->getContents();
     }
 }
