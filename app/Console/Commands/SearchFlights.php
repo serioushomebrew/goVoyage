@@ -49,6 +49,7 @@ class SearchFlights extends Command
      */
     public function handle()
     {
+        // Fetch the input data
         if ($this->option('wizzard')) {
             do {
                 $startDate = $this->ask('What is the starting date (Using date format dd-mm-yyyy)');
@@ -82,6 +83,40 @@ class SearchFlights extends Command
 
             $temperature = $this->option('temperature');
         }
+
+        // Search for flights
+        $klm = new KLMApi(env('KLM_API_ENDPOINT'), env('KLM_API_ID'), env('KLM_API_KEY'));
+        $klmFlights = $klm->request('/travel/locations/cities', [
+            'expand' => 'lowest-fare',
+            'pageSize' => 2000,
+            'country' => 'NL',
+            'origins' => 'AMS',
+            //     'minDepartureDate' => $startDate->format('Y-m-d'),
+            //     'maxBudget' => $maxPrice,
+        ]);
+
+        $transavia = new TransaviaApi(env('TRANSAVIA_API_ENDPOINT'), env('TRANSAVIA_API_ID'), env('TRANSAVIA_API_KEY'));
+        $transaviaFlights = $transavia->request('/v1/flightoffers', [
+            'origin' => 'AMS',
+            // 'origindeparturedate' => $startDate,
+            // 'destinationdeparturedate' => $endDate,
+            // 'adults' => $passengers,
+            // 'price' => '0-' . $maxBudget,
+            'lowestpriceperdestination' => true,
+            'limit' => 2000,
+            'orderby' => 'Price',
+        ]);
+
+        // $res = $transavia->request('/v1/flightoffers', [
+        //     'origin' => 'AMS',
+        //     'origindeparturedate' => $startDate,
+        //     'destinationdeparturedate' => $endDate,
+        //     'adults' => $adultPassengers,
+        //     'price' => $priceRange,
+        //     'lowestpriceperdestination' => true,
+        //     'limit' => '1000',
+        //     'orderby' => 'Price',
+        // ]);
 
 
         // $startDate = $this->option('startDate');

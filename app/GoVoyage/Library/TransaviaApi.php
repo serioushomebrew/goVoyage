@@ -85,6 +85,6 @@ class TransaviaApi
         }
 
         // @TODO: Handle errors
-        return $response->getBody()->getContents();
+        return json_decode($response->getBody()->getContents());
     }
 }
