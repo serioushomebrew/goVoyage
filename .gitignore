@@ -19,6 +19,9 @@ Homestead.json
 #.env.php
 #.env
 
+# MacOS Stuff (Sorry guys, for using MacOS..)
+*.DS_Store
+
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/
 .idea/
