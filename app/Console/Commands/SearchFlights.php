@@ -70,10 +70,8 @@ class SearchFlights extends Command
             } while (!is_numeric($temperature));
         } else {
             $startDate = $this->option('startDate');
-            $startDate = Carbon::createFromFormat('d-m-Y', $startDate);
 
             $endDate = $this->option('endDate');
-            $endDate = Carbon::createFromFormat('d-m-Y', $endDate);
 
             $maxBudget = $this->option('maxBudget');
 
@@ -81,6 +79,9 @@ class SearchFlights extends Command
 
             $temperature = $this->option('temperature');
         }
+
+        $startDate = Carbon::createFromFormat('d-m-Y', $startDate);
+        $endDate = Carbon::createFromFormat('d-m-Y', $endDate);
 
         dd(Flights::search($startDate, $endDate, $maxBudget, $passengers, $temperature));
 

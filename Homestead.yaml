@@ -2,8 +2,8 @@
 ip: "192.168.10.10"
 memory: 2048
 cpus: 1
-hostname: govoyage
-name: govoyage
+hostname: doh16
+name: doh16
 provider: virtualbox
 
 authorize: ~/.ssh/id_rsa.pub
@@ -12,12 +12,12 @@ keys:
     - ~/.ssh/id_rsa
 
 folders:
-    - map: "/Users/kevin/Development/Kevin/goVoyage"
-      to: "/home/vagrant/govoyage"
+    - map: "/Users/kevin/Development/Kevin/doh16"
+      to: "/home/vagrant/doh16"
 
 sites:
     - map: homestead.app
-      to: "/home/vagrant/govoyage/public"
+      to: "/home/vagrant/doh16/public"
 
 databases:
     - homestead
