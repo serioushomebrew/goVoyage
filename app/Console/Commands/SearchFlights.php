@@ -85,6 +85,8 @@ class SearchFlights extends Command
         }
 
         // Search for flights
+        $flights = collection();
+
         $klm = new KLMApi(env('KLM_API_ENDPOINT'), env('KLM_API_ID'), env('KLM_API_KEY'));
         $klmFlights = $klm->request('/travel/locations/cities', [
             'expand' => 'lowest-fare',
@@ -98,14 +100,16 @@ class SearchFlights extends Command
         $transavia = new TransaviaApi(env('TRANSAVIA_API_ENDPOINT'), env('TRANSAVIA_API_ID'), env('TRANSAVIA_API_KEY'));
         $transaviaFlights = $transavia->request('/v1/flightoffers', [
             'origin' => 'AMS',
-            // 'origindeparturedate' => $startDate,
-            // 'destinationdeparturedate' => $endDate,
-            // 'adults' => $passengers,
-            // 'price' => '0-' . $maxBudget,
+            'origindeparturedate' => '20161220',
+            'destinationdeparturedate' => '20170120',
+            'adults' => 1,
+            'price' => '0-100',
             'lowestpriceperdestination' => true,
-            'limit' => 2000,
+            'limit' => '1000',
             'orderby' => 'Price',
         ]);
+
+        dd($transaviaFlights);
 
         // $res = $transavia->request('/v1/flightoffers', [
         //     'origin' => 'AMS',

@@ -80,7 +80,7 @@ class TransaviaApi
             ]);
         } catch (\Exception $e) {
             // @TODO: What to do here?
-            // throw new \Exception($e);
+            throw new \Exception($e);
             return null;
         }
 
