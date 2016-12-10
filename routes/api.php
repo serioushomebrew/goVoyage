@@ -17,5 +17,5 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // })->middleware('auth:api');
 Route::group(['prefix' => 'v1'], function () {
-  Route::resource('test-connection', 'TestController');
+    Route::resource('test-connection', 'TestController');
 });
