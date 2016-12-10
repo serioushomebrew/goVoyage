@@ -16,16 +16,7 @@ class CreateCacheWeathersTable extends Migration
         Schema::create('cache_weathers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('origin_code')->unique();
-            $table->float('precipitation', 4, 2);
-            $table->integer('pressure');
-            $table->integer('temp_c');
-            $table->integer('temp_f');
-            $table->integer('wind_speed_miles');
-            $table->integer('wind_speed_kmph');
-            $table->integer('wind_direction');
-            $table->string('description_id');
-            $table->string('description_icon');
-            $table->string('description_value');
+            $table->integer('temp');
             $table->timestamp('created_at');
         });
     }

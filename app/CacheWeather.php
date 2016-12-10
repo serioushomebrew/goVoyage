@@ -18,15 +18,7 @@ class CacheWeather extends Model
      */
     protected $fillable = [
         'origin_code',
-        'precipitation',
-        'pressure',
-        'temp_c',
-        'temp_f',
-        'wind_speed_miles',
-        'wind_speed_kmph',
-        'description_id',
-        'description_icon',
-        'description_value',
+        'temp',
     ];
 
     /**
@@ -39,7 +31,7 @@ class CacheWeather extends Model
     /**
      * Indicates if the model should be timestamped
      */
-    protected $timestamps = false;
+    public $timestamps = false;
 
     /**
      * Boot the model
