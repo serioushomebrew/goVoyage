@@ -10,6 +10,8 @@ use \App\GoVoyage\Library\SchipholApi;
 use \App\GoVoyage\Library\TransaviaApi;
 use \App\GoVoyage\Library\KLMApi;
 
+use App\CacheWeather;
+
 class Flights
 {
     public static function search(
@@ -126,9 +128,34 @@ class Flights
         $endDate->addDay(); // add support for flights on the endDate day itself
         $flights = $flights->filter(function ($item) use (&$endDate) {
             return $endDate->gt($item['dates']['return']);
-        });
+        })->map(function ($item) use (&$klm) {
+            $city = $item['destination']['code'];
 
-        // Fetch all
+            // Check if the weather information exists
+            $weather = CacheWeather::where('origin_code', $city)->first();
+
+            if ($weather) {
+                // @TODO: Check TTL for cache removal
+                $item['weather']['temp'] = $weather->temp;
+            } else {
+                $weatherData = $klm->request('/travel/locations/v2/cities/' . $city . '/weather', []);
+
+                if ($weatherData) {
+                    $weather = CacheWeather::create([
+                        'origin_code' => $city,
+                        'temp' => $weatherData->actual->temp_C,
+                    ]);
+
+                    $item['weather']['temp'] = $weather->temp;
+                } else {
+                    $item['weather']['temp'] = 99;
+                }
+            }
+
+            return $item;
+        })->filter(function ($item) use (&$temperature) {
+            return abs($item['weather']['temp'] - $temperature) < 4;
+        });
 
         return $flights;
     }
