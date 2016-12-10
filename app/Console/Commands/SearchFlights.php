@@ -5,7 +5,8 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 
 use \App\GoVoyage\Library\SchipholApi;
-use App\GoVoyage\Library\TransaviaApi;
+use \App\GoVoyage\Library\TransaviaApi;
+use \App\GoVoyage\Library\KLMApi;
 
 class SearchFlights extends Command
 {
@@ -99,7 +100,17 @@ class SearchFlights extends Command
             'limit' => '1000',
             'orderby' => 'Price',
         ]);
+        // $klm = new KLMApi(env('KLM_API_ENDPOINT'), env('KLM_API_ID'), env('KLM_API_KEY'));
+        //
+        // $res = $klm->request('/travel/locations/cities', [
+        //     'expand' => 'lowest-face',
+        //     'pageSize' => 2,
+        //     'country' => 'NL',
+        //     'origins' => 'AMS',
+        //     // ''
+        // ]);
 
-        dd(json_decode($res));
+        dd($res);
+        // dd(json_decode($res));
     }
 }
