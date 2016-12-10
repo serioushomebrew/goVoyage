@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use App\Console\Commands\ApiKlmFlights;
+use App\Console\Commands\TransaviaFlights;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -17,6 +18,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\ApiTest::class,
         \App\Console\Commands\ApiKlmFlights::class,
         \App\Console\Commands\SearchFlights::class,
+        \App\Console\Commands\TransaviaFlights::class,
     ];
 
     /**
