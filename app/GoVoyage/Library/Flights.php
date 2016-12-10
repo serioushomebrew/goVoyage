@@ -139,7 +139,6 @@ class Flights
                 $item['weather']['temp'] = $weather->temp;
             } else {
                 $weatherData = $klm->request('/travel/locations/v2/cities/' . $city . '/weather', []);
-
                 if ($weatherData) {
                     $weather = CacheWeather::create([
                         'origin_code' => $city,
@@ -148,10 +147,9 @@ class Flights
 
                     $item['weather']['temp'] = $weather->temp;
                 } else {
-                    $item['weather']['temp'] = 99;
+                    $item['weather']['temp'] = -1; // error
                 }
             }
-
             return $item;
         })->filter(function ($item) use (&$temperature) {
             return abs($item['weather']['temp'] - $temperature) < 4;
