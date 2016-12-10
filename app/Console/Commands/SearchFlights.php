@@ -100,6 +100,8 @@ class SearchFlights extends Command
             'limit' => '1000',
             'orderby' => 'Price',
         ]);
+        // $transaviaFlights = $res->
+
         // $klm = new KLMApi(env('KLM_API_ENDPOINT'), env('KLM_API_ID'), env('KLM_API_KEY'));
         //
         // $res = $klm->request('/travel/locations/cities', [

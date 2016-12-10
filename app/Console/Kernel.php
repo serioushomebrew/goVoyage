@@ -18,7 +18,6 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\ApiTest::class,
         \App\Console\Commands\ApiKlmFlights::class,
         \App\Console\Commands\SearchFlights::class,
-        \App\Console\Commands\TransaviaFlights::class,
     ];
 
     /**
