@@ -10,6 +10,7 @@ use \App\GoVoyage\Library\SchipholApi;
 use \App\GoVoyage\Library\TransaviaApi;
 use \App\GoVoyage\Library\KLMApi;
 
+use App\Airport;
 use App\CacheWeather;
 
 class Flights
@@ -91,20 +92,22 @@ class Flights
             // dd($transaviaFlights);
             $flights = collect($transaviaFlights->flightOffer)->reduce(function ($carry, $item) {
                 // dd($carry);
+                $origAirport = AirPort::where('code', $item->outboundFlight->departureAirport->locationCode)->first();
+                $destAirport = AirPort::where('code', $item->inboundFlight->departureAirport->locationCode)->first();
                 $carry->push([
                     // Origin
                     'origin' => [
                         // @TODO: may need to do extra call for detailed airport info
                         'code' => $item->outboundFlight->departureAirport->locationCode,
-                        'name' => null,
-                        'description' => null,
+                        'name' => $origAirport ? $origAirport['name'] : null,
+                        'description' => $origAirport ? $origAirport['city'] : null,
                     ],
 
                     // Destination
                     'destination' => [
                         'code' => $item->outboundFlight->arrivalAirport->locationCode,
-                        'name' => null,
-                        'description' => null,
+                        'name' => $destAirport ? $destAirport['name'] : null,
+                        'description' => $destAirport ? $destAirport['city'] : null,
                     ],
 
                     // Pricing
