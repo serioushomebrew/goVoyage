@@ -7,82 +7,432 @@
 
         <title>GoVoyage</title>
 
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
+
+        <!-- Bootstrap 3.2.0 stylesheet -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Font Awesome Icon stylesheet -->
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+
+        <!-- Owl Carousel stylesheet -->
+        <link href="css/owl.carousel.css" rel="stylesheet">
+
+        <!-- Pretty Photo stylesheet -->
+        <link href="css/prettyPhoto.css" rel="stylesheet">
+
+        <!-- Custom stylesheet -->
+        <link href="style.css" rel="stylesheet">
+
+        <link href="css/color/white.css" rel="stylesheet">
+
+        <!-- Custom Responsive stylesheet -->
+        <link href="css/responsive.css" rel="stylesheet">
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
     </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
-                </div>
-            @endif
+<body>
+  <!-- ====== Header Section ====== -->
+  <header id="top">
+    <div class="bg-color">
+      <div class="top section-padding">
+        <div class="container">
+          <div class="row">
 
-            <div class="content">
-                <div class="title m-b-md">
-                    GoVoyage
-                </div>
+            <div class="col-sm-6 col-md-6">
+              <div class="content">
+                <h1><strong>GoVoyage</strong></h1>
+                <h2>Discover new places everyday</h2>
+<p>Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't, become nothing. She starred in one of the ones that became nothing. </p>
+                <div class="button" id="download-app1">
+                  <a href="#download" class="btn btn-default btn-lg custom-btn"><i class="fa fa-cloud-download"></i>Download App</a>
+                </div> <!-- end .button -->
+              </div> <!-- end .content -->
+            </div> <!-- end .top > .container> .row> .col-md-7 -->
 
-                <div class="links">
-                    <a href="https://github.com/serioushomebrew/goVoyage">Backend</a>
-                    <a href="https://github.com/serioushomebrew/GoVoyageMobile">Frontend App</a>
-                </div>
+            <div class="col-sm-6 col-md-6">
+              <div class="photo-slide">
+               <div id="carousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#carousel" data-slide-to="1" class=""></li>
+                  <li data-target="#carousel" data-slide-to="2" class=""></li>
+                  <li data-target="#carousel" data-slide-to="3" class=""></li>
+                  <li data-target="#carousel" data-slide-to="4" class=""></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img src="images/phone1.png" alt="">
+                  </div>
+                  <div class="item next">
+                    <img src="images/phone2.png" alt="">
+                  </div>
+                  <div class="item">
+                    <img src="images/phone3.png" alt="">
+                  </div>
+                  <div class="item">
+                    <img src="images/phone4.png" alt="">
+                  </div>
+                  <div class="item">
+                    <img src="images/phone5.png" alt="">
+                  </div>
+                </div> <!-- end .carousel-inner -->
+              </div> <!-- end #carousel -->
+              </div> <!-- end .photo-slide -->
+            </div> <!-- end .top > .container> .row> .col-md-5 -->
+
+          </div> <!-- end .top> .container> .row -->
+        </div> <!-- end .top> .container -->
+      </div> <!-- end .top -->
+    </div> <!-- end .bg-color -->
+  </header>
+  <!-- ====== End Header Section ====== -->
+
+
+  <!-- ====== Features Section ====== -->
+  <section id="features">
+    <div class="features section-padding">
+      <div class="container">
+
+        <div class="header">
+          <h1 style="">Ik wil op reis, maar waarheen?&#39;</h1>
+          <p>Er zijn zoveel mooie bestemmingen en als ik de mogelijkheid zou hebben dan zou ik alle landen van de wereld bezoeken. Helaas heb ik daar de tijd en het geld niet voor. Ik moet dus een keuze maken tussen al die mooie bestemmingen en keuzes maken, dat is moeilijk. Ik weet een paar dingen zeker: ik wil graag lekker warm weer op mijn bestemming, ik heb €200 voor een vlucht en ben van 10 tot 15 april vrij. Waar zou ik heen kunnen gaan voor dit budget? En waar is het in april minstens 25 graden? Wat zou het toch fijn zijn als er een app zou bestaan die dit voor mij uit kan zoeken.</p>
+          <hr>
+        </div> <!-- end .container> .header -->
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="featured-item-img">
+                <h1>​De oplossing: GoVoyage</h1>
+                <img style="width: 450px; margin: auto;" src="images/phone5.png" alt="">
             </div>
+          </div>
+          {{-- <div class="col-md-8 feature-list">
+            <div class="row">
+
+              <div class="col-sm-6 col-md-6">
+                <div class="featured-item">
+                  <div class="icon">
+                    <div class="icon-style"><i class="fa fa-desktop"></i></div>
+                  </div> <!-- end icon -->
+                  <div class="meta-text">
+                    <h3>Responsive Design</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, culpa.</p>
+                  </div> <!-- end .meta-text -->
+                </div> <!-- end .featured-item -->
+              </div> <!-- end .feature-list> .row > .col-md-6 (1st item) -->
+
+              <div class="col-sm-6 col-md-6">
+                <div class="featured-item">
+                  <div class="icon">
+                    <div class="icon-style"><i class="fa fa-send"></i></div>
+                  </div> <!-- end icon -->
+                  <div class="meta-text">
+                    <h3>Cross Browser Compatible</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, culpa.</p>
+                  </div> <!-- end .meta-text -->
+                </div> <!-- end .featured-item -->
+              </div> <!-- end .feature-list> .row > .col-md-6 (2nd item) -->
+
+              <div class="col-sm-6 col-md-6">
+                <div class="featured-item">
+                  <div class="icon">
+                    <div class="icon-style"><i class="fa fa-gears"></i></div>
+                  </div> <!-- end icon -->
+                  <div class="meta-text">
+                    <h3>Fast Loading</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, culpa.</p>
+                  </div> <!-- end .meta-text -->
+                </div> <!-- end .featured-item -->
+              </div> <!-- end .feature-list> .row > .col-md-6 (3rd item) -->
+
+              <div class="col-sm-6 col-md-6">
+                <div class="featured-item">
+                  <div class="icon">
+                    <div class="icon-style"><i class="fa fa-search"></i></div>
+                  </div> <!-- end icon -->
+                  <div class="meta-text">
+                    <h3>Easily Customize</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, culpa.</p>
+                  </div> <!-- end .meta-text -->
+                </div> <!-- end .featured-item -->
+              </div> <!-- end .feature-list> .row > .col-md-6 (4th item) -->
+
+              <div class="col-sm-6 col-md-6">
+                <div class="featured-item">
+                  <div class="icon">
+                    <div class="icon-style"><i class="fa fa-file"></i></div>
+                  </div> <!-- end icon -->
+                  <div class="meta-text">
+                    <h3>Trendy Design</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, culpa.</p>
+                  </div> <!-- end .meta-text -->
+                </div> <!-- end .featured-item -->
+              </div> <!-- end .feature-list> .row > .col-md-6 (5th item) -->
+
+              <div class="col-sm-6 col-md-6">
+                <div class="featured-item">
+                  <div class="icon">
+                    <div class="icon-style"><i class="fa fa-mobile-phone"></i></div>
+                  </div> <!-- end icon -->
+                  <div class="meta-text">
+                    <h3>Excellent Support</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, culpa.</p>
+                  </div> <!-- end .meta-text -->
+                </div> <!-- end .featured-item -->
+              </div> <!-- end .feature-list> .row > .col-md-6 (6th item) -->
+
+            </div> <!-- end .feature-list> .row -->
+          </div> <!-- end .feature-list --> --}}
+        </div> <!-- end .container> .row -->
+
+      </div> <!-- end .container -->
+    </div> <!-- end .features -->
+  </section>
+  <!-- ====== End Features Section ====== -->
+
+
+  <!-- ====== Screenshots Section ====== -->
+  <section id="screenshots">
+    <div class="screenshots section-padding dark-bg">
+      <div class="container">
+
+        <div class="header">
+          <h2>​Maar ik weet niks over de bestemmingen die GoVoyage voor mij heeft geselecteerd!</h2>
+          <p>Klik op de bestemming naar jou keuze en ontdek! Sta midden op dat mooie plein of lig lekker op het strand. GoVoyage geeft jou de mogelijkheid om jouw bestemming van wel heel dichtbij te bekijken door middel van 360 graden foto&#39;s. GoVoyage vertelt jou de gemiddelde prijs van een biertje en Big Mac op bestemming, zodat je een idee krijgt van het prijspeil op jouw bestemming.</p>
+          <div class="underline"><i class="fa fa-image"></i></div>
         </div>
-    </body>
+        <div class="header">
+          <h2>​Ja, ik ga boeken!</h2>
+          <p>Nadat jij heel simpel jouw perfecte reis hebt geboekt kan het echte genieten beginnen. GoVoyage zoekt voor jou een mooie afspeellijst op Spotify om alvast helemaal in de stemming te komen voor jou reis. Stel al jouw vrienden op de hoogte van jouw aankomende vakantie door je reis te delen op social media.</p>
+          <div class="underline"><i class="fa fa-image"></i></div>
+        </div>
+        <div class="header">
+          <h2>​Wauw, mijn vakantie was geweldig! Wanneer gaan we weer?</h2>
+          <p>Door GoVoyage te koppelen aan jouw social media account geeft de app jou de beste en leukste opties voor jouw volgende reis. GoVoyage kijkt bijvoorbeeld naar wat je hebt geliked op Facebook of naar welke muziek jij luistert op Spotify. Deze informatie koppelt de app aan de mooiste bestemmingen voor jou.</p>
+        </div>
+
+      </div> <!-- .container -->
+    </div> <!-- end .screenshots -->
+  </section>
+  <!-- ====== End Screenshots Section ====== -->
+
+  <!-- ====== Team Section ====== -->
+  <section id="team">
+    <div class="team section-padding">
+      <div class="container">
+
+        <div class="header">
+          <h1>Meet the team</h1>
+          <p>TODO: explain the team (SHB mention? Sinus scroller?)</p>
+          <div class="underline"><i class="fa fa-users"></i></div>
+        </div> <!-- end .container> .header -->
+
+        <div class="row">
+          <div class="app-dev">
+
+            <div class="col-sm-6 col-md-6 col-lg-3 info">
+              <div class="member">
+                <img src="images/01.jpg" alt="">
+                <div class="details">
+                  <div class="social icon">
+                    <ul>
+                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                      <li><a href="#"><i class="fa fa-github"></i></a></li>
+                    </ul>
+                  </div> <!-- end .icon -->
+                </div> <!-- end .details -->
+              </div> <!-- end .member -->
+              <div class="title">
+                <h4>Margery Key</h4>
+                <h5>Lead Developer</h5>
+              </div> <!-- end .title -->
+            </div> <!-- end .info (1) -->
+
+            <div class="col-sm-6 col-md-6 col-lg-3 info">
+              <div class="member">
+                <img src="images/01.jpg" alt="">
+                <div class="details">
+                  <div class="social icon">
+                    <ul>
+                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                      <li><a href="#"><i class="fa fa-github"></i></a></li>
+                    </ul>
+                  </div> <!-- end .icon -->
+                </div> <!-- end .details -->
+              </div> <!-- end .member -->
+              <div class="title">
+                <h4>Margery Key</h4>
+                <h5>Lead Developer</h5>
+              </div> <!-- end .title -->
+          </div> <!-- end .info (2) -->
+
+          <div class="col-sm-6 col-md-6 col-lg-3 info">
+            <div class="member">
+              <img src="images/01.jpg" alt="">
+              <div class="details">
+                <div class="social icon">
+                  <ul>
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-github"></i></a></li>
+                  </ul>
+                </div> <!-- end .icon -->
+              </div> <!-- end .details -->
+            </div> <!-- end .member -->
+            <div class="title">
+              <h4>Margery Key</h4>
+              <h5>Lead Developer</h5>
+            </div> <!-- end .title -->
+        </div> <!-- end .info (3) -->
+
+        <div class="col-sm-6 col-md-6 col-lg-3 info">
+          <div class="member">
+            <img src="images/01.jpg" alt="">
+            <div class="details">
+              <div class="social icon">
+                <ul>
+                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                  <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                  <li><a href="#"><i class="fa fa-github"></i></a></li>
+                </ul>
+              </div> <!-- end .icon -->
+            </div> <!-- end .details -->
+          </div> <!-- end .member -->
+          <div class="title">
+            <h4>Margery Key</h4>
+            <h5>Lead Developer</h5>
+          </div> <!-- end .title -->
+      </div> <!-- end .info (4) -->
+
+      <div style="text-align: center; width: 100%;" class="col-sm-6 col-md-6 col-lg-3 info">
+        <div class="member">
+          <img src="images/01.jpg" alt="">
+          <div class="details">
+            <div class="social icon">
+              <ul>
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="#"><i class="fa fa-github"></i></a></li>
+              </ul>
+            </div> <!-- end .icon -->
+          </div> <!-- end .details -->
+        </div> <!-- end .member -->
+        <div class="title">
+          <h4>Margery Key</h4>
+          <h5>Lead Developer</h5>
+        </div> <!-- end .title -->
+    </div> <!-- end .info (5) -->
+
+          </div> <!-- end .app-dev -->
+        </div> <!-- end .container> .row -->
+
+      </div> <!-- end .container -->
+    </div> <!-- end .team -->
+  </section>
+  <!-- ====== Team Section ====== -->
+
+
+  <!-- ====== Download Section ====== -->
+  <section id="download">
+    <div class="bg-color">
+      <div class="download section-padding">
+        <div class="container">
+
+          <div class="header">
+            <h1>Download <strong>GoVoyage</strong></h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam voluptatum hic, facere adipisci, placeat ipsa corporis suscipit officiis labore ipsam, laudantium earum ducimus.</p>
+            <div class="underline"><i class="fa fa-cloud-download"></i></div>
+          </div> <!-- end .container > .header -->
+
+          <div class="row download-area">
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+              <a href="#" class="btn btn-default custom-btn download-btn">
+                <i class="fa fa-mobile"></i>
+                <div class="app-download">
+                  <span>Download on the</span><strong>App Store</strong>
+                </div>
+              </a>
+            </div> <!-- end .download-area> .col-lg-3 (1) -->
+
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+              <a href="#" class="btn btn-default custom-btn download-btn">
+              <img src="images/playstore.png" alt="">
+              <div class="app-download">
+                <span>GET IT ON</span><strong>Google Play</strong>
+              </div></a>
+            </div> <!-- end .download-area> .col-lg-3 (2) -->
+
+          </div> <!-- end .container > .row/.download-area -->
+
+        </div> <!-- end .container -->
+      </div> <!-- end .download -->
+    </div> <!-- end .bg-color -->
+  </section>
+  <!-- ====== End Download Section ====== -->
+
+
+  <!-- ====== Copyright Section ====== -->
+  <section class="copyright dark-bg">
+    <div class="container">
+      <p>&copy; 2016 <a href="#">GoVoyage</a>, All Rights Reserved</p>
+    </div> <!-- end .container -->
+  </section>
+  <!-- ====== End Copyright Section ====== -->
+
+
+  <!-- jQuery -->
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="js/jquery.js"></script>
+
+  <!-- Modernizr js -->
+  <script src="js/modernizr-latest.js"></script>
+
+  <!-- Bootstrap 3.2.0 js -->
+  <script src="js/bootstrap.min.js"></script>
+
+  <!-- Owl Carousel plugin -->
+  <script src="js/owl.carousel.min.js"></script>
+
+  <!-- ScrollTo js -->
+  <script src="js/jquery.scrollto.min.js"></script>
+
+  <!-- LocalScroll js -->
+  <script src="js/jquery.localScroll.min.js"></script>
+
+  <!-- jQuery Parallax plugin -->
+  <script src="js/jquery.parallax-1.1.3.js"></script>
+
+  <!-- Skrollr js plugin -->
+  <script src="js/skrollr.min.js"></script>
+
+  <!-- jQuery One Page Nav Plugin -->
+  <script src="js/jquery.nav.js"></script>
+
+  <!-- jQuery Pretty Photo Plugin -->
+  <script src="js/jquery.prettyPhoto.js"></script>
+
+
+  <!-- Custom JS -->
+  <script src="js/main.js"></script>
+
+  <script>
+    jQuery(document).ready(function($) {
+      "use strict";
+
+      jQuery("a[data-rel^='prettyPhoto']").prettyPhoto({social_tools:false});
+    });
+  </script>
+</body>
 </html>
