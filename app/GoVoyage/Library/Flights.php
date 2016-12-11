@@ -165,7 +165,7 @@ class Flights
             return $temperature === null || abs($item['weather']['temp'] - $temperature) < 4;
         });
 
-        Storage::put('search/' . $hash, $flights->toArray());
+        Storage::put('search/' . $hash, $flights->toJson());
 
         return $flights;
     }
