@@ -34,7 +34,7 @@ class Flights
         $hash = sha1($startDate->format('d-m-Y') . $endDate->format('d-m-Y') . $maxBudget . $passengers . $temperature);
 
         if (Storage::exists('search/' . $hash)) {
-            return collect(json_decode(Storage::get('search/' . $hash)));
+            return collect(json_decode(Storage::get('search/' . $hash), true));
         }
 
         // Initialize the API's
