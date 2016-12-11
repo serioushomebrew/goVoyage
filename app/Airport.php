@@ -4,21 +4,26 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CacheWeather extends Model
+class AirPort extends Model
 {
     /**
      * The database table name
      *
      * @var string
      */
-    protected $table = 'cache_weathers';
+    protected $table = 'airports';
 
     /**
      * The attributes are mass assignable
      */
     protected $fillable = [
-        'origin_code',
-        'temp',
+        'code',
+        'name',
+        'city',
+        'country_code',
+        'country_name',
+        'latitude',
+        'longitude',
     ];
 
     /**
