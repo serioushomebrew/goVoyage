@@ -10,25 +10,45 @@ use \App\GoVoyage\Library\SchipholApi;
 use \App\GoVoyage\Library\TransaviaApi;
 use \App\GoVoyage\Library\KLMApi;
 
+use Storage;
+
 use App\Airport;
 use App\CacheWeather;
 
 class Flights
 {
     public static function search(
-        Carbon $startDate,
-        Carbon $endDate,
-        int $maxBudget,
-        int $passengers,
-        int $temperature
+        Carbon $startDate = null,
+        Carbon $endDate = null,
+        int $maxBudget = null,
+        int $passengers = null,
+        int $temperature = null
     ) : Collection {
-        // Search for flights
+        // Almost all values are optional, check which are not set and give them their default values
+        $startDate = ($startDate === null) ? Carbon::now() : $startDate;
+        $endDate = ($endDate === null) ? Carbon::now()->addYear(1) : $endDate;
+        $maxBudget = ($maxBudget === null) ? 8000 : $maxBudget;
+        $passengers = ($passengers === null) ? 1 : $passengers;
+
+        // Fix request caching for improved speeds
+        $hash = sha1($startDate->format('d-m-Y') . $endDate->format('d-m-Y') . $maxBudget . $passengers . $temperature);
+
+        if (Storage::exists('search/' . $hash)) {
+            return collect(Storage::get('search/' . $hash));
+        }
+
+        // Initialize the API's
+        $klm = new KLMApi(env('KLM_API_ENDPOINT'), env('KLM_API_ID'), env('KLM_API_KEY'));
+        $transavia = new TransaviaApi(env('TRANSAVIA_API_ENDPOINT'), env('TRANSAVIA_API_ID'), env('TRANSAVIA_API_KEY'));
+
+        // Search for flightplans based on the budget and departure time
+        // - KLM
+        // - Transavia
         $flights = collect();
 
-        $klm = new KLMApi(env('KLM_API_ENDPOINT'), env('KLM_API_ID'), env('KLM_API_KEY'));
         $klmFlights = $klm->request('/travel/locations/cities', [
             'expand' => 'lowest-fare',
-            'pageSize' => 2000,
+            'pageSize' => 200,
             'country' => 'NL',
             'origins' => 'AMS',
             'minDepartureDate' => $startDate->format('Y-m-d'),
@@ -36,10 +56,7 @@ class Flights
         ]);
 
         if ($klmFlights && $klmFlights->_embedded) {
-            $flights = collect($klmFlights->_embedded)->reduce(function ($carry, $item) {
-                // dd($item);
-                // dd($carry);
-
+            $flights = collect($klmFlights->_embedded)->reduce(function ($carry, $item) use (&$passengers) {
                 $carry->push([
                     // Origin
                     'origin' => [
@@ -48,26 +65,22 @@ class Flights
                         'description' => $item->fare->origin->description,
                     ],
 
-                    // Destination
                     'destination' => [
                         'code' => $item->code,
                         'name' => $item->name,
                         'description' => $item->description,
                     ],
 
-                    // Pricing
                     'pricing' => [
-                        'price' => $item->fare->amount->price,
+                        'price' => $item->fare->amount->price * $passengers,
                         'currency' => $item->fare->amount->currency,
                     ],
 
-                    // Dates
                     'dates' => [
                         'departure' => Carbon::createFromFormat('Y-m-d', $item->fare->departureDate),
                         'return' => Carbon::createFromFormat('Y-m-d', $item->fare->returnDate),
                     ],
 
-                    // Custom, KLM specific extra data
                     'custom' => [
                         // 'popularity' => $item->fare->popularity,
                     ],
@@ -75,9 +88,7 @@ class Flights
                 return $carry;
             }, $flights);
         }
-        // dd($flights);
 
-        $transavia = new TransaviaApi(env('TRANSAVIA_API_ENDPOINT'), env('TRANSAVIA_API_ID'), env('TRANSAVIA_API_KEY'));
         $transaviaFlights = $transavia->request('/v1/flightoffers', [
             'origin' => 'AMS',
             'origindeparturedate' => $startDate->format('Ymd'),
@@ -85,7 +96,7 @@ class Flights
             'adults' => $passengers,
             'price' => '0-'.($maxBudget / 2), //@NOTE: $maxBudget is per flight (not retour)
             'lowestpriceperdestination' => true,
-            'limit' => 1000,
+            'limit' => 200,
             'orderby' => 'Price',
         ]);
         if ($transaviaFlights) {
@@ -95,7 +106,6 @@ class Flights
                 $origAirport = AirPort::where('code', $item->outboundFlight->departureAirport->locationCode)->first();
                 $destAirport = AirPort::where('code', $item->inboundFlight->departureAirport->locationCode)->first();
                 $carry->push([
-                    // Origin
                     'origin' => [
                         // @TODO: may need to do extra call for detailed airport info
                         'code' => $item->outboundFlight->departureAirport->locationCode,
@@ -103,20 +113,17 @@ class Flights
                         'description' => $origAirport ? $origAirport['city'] : null,
                     ],
 
-                    // Destination
                     'destination' => [
                         'code' => $item->outboundFlight->arrivalAirport->locationCode,
                         'name' => $destAirport ? $destAirport['name'] : null,
                         'description' => $destAirport ? $destAirport['city'] : null,
                     ],
 
-                    // Pricing
                     'pricing' => [
                         'price' => $item->pricingInfoSum->totalPriceAllPassengers,
                         'currency' => $item->pricingInfoSum->currencyCode,
                     ],
 
-                    // Dates
                     'dates' => [
                         'departure' => Carbon::createFromFormat('Y-m-d\TH:i:s', $item->outboundFlight->departureDateTime),
                         'return' => Carbon::createFromFormat('Y-m-d\TH:i:s', $item->inboundFlight->departureDateTime),
@@ -155,8 +162,10 @@ class Flights
             }
             return $item;
         })->filter(function ($item) use (&$temperature) {
-            return abs($item['weather']['temp'] - $temperature) < 4;
+            return $temperature === null || abs($item['weather']['temp'] - $temperature) < 4;
         });
+
+        Storage::put('search/' . $hash, $flights->toJson());
 
         return $flights;
     }

@@ -14,11 +14,11 @@ class SearchFlightsController extends Controller
     public function search(Request $request)
     {
         $response = Flights::search(
-            Carbon::createFromFormat('d-m-Y', $request->start ?? '12-12-2016'),
-            Carbon::createFromFormat('d-m-Y', $request->end ?? '01-01-2017'),
-            $request->budget ?? 700,
-            $request->passengers ?? 1,
-            $request->temperature ?? 35
+            $request->start ? Carbon::createFromFormat('d-m-Y', $request->start) : null,
+            $request->end ? Carbon::createFromFormat('d-m-Y', $request->end) : null,
+            $request->budget ?? null,
+            $request->passengers ?? null,
+            $request->temperature ?? null
         );
 
         return response()->json($response);
