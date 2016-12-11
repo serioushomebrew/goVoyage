@@ -33,9 +33,9 @@ class Flights
         // Fix request caching for improved speeds
         $hash = sha1($startDate->format('d-m-Y') . $endDate->format('d-m-Y') . $maxBudget . $passengers . $temperature);
 
-        if (Storage::exists('search/' . $hash)) {
-            return collect(json_decode(Storage::get('search/' . $hash), true));
-        }
+        // if (Storage::exists('search/' . $hash)) {
+        //     return collect(json_decode(Storage::get('search/' . $hash), true));
+        // }
 
         // Initialize the API's
         $klm = new KLMApi(env('KLM_API_ENDPOINT'), env('KLM_API_ID'), env('KLM_API_KEY'));
@@ -105,6 +105,7 @@ class Flights
                 // dd($carry);
                 $origAirport = AirPort::where('code', $item->outboundFlight->departureAirport->locationCode)->first();
                 $destAirport = AirPort::where('code', $item->inboundFlight->departureAirport->locationCode)->first();
+
                 $carry->push([
                     'origin' => [
                         // @TODO: may need to do extra call for detailed airport info
@@ -169,6 +170,29 @@ class Flights
         $tmp = [];
         foreach ($flights as $flight) {
             if (abs($flight['weather']['temp'] - $temperature) < 4) {
+                // PIXABAY image search
+                $pixaBayClient = new \GuzzleHttp\Client();
+                $pixaBayEndpoint = env('PIXABAY_API_ENDPOINT');
+
+                $response = $pixaBayClient->request('GET', $pixaBayEndpoint, [
+                    'query' => [
+                        'key' => env('PIXABAY_API_KEY'),
+                        'q' => str_ireplace("(".$flight['destination']['code'].")", "", $flight['destination']['name']),
+                        'image_type' => 'photo',
+                        'orientation' => 'horizontal',
+                        'category' => 'buildings',
+                    ],
+                ]);
+
+                $image = json_decode($response->getBody()->getContents(), true);
+                // dd(str_ireplace("(".$flight['destination']['code'].")", "", $flight['destination']['name']));
+                // dd($image['hits'][0]['webformatURL']);
+                if ($image['hits'] ?? null) {
+                    $flight['imageUrl'] = $image['hits'][0]['webformatURL'];
+                } else {
+                    $flight['imageUrl'] = "https://s-media-cache-ak0.pinimg.com/originals/7b/e1/e3/7be1e3e9a1444f5af2160c6515a76fd7.jpg";
+                }
+
                 array_push($tmp, $flight);
             }
         }
@@ -180,7 +204,7 @@ class Flights
         //     return $temperature === null || abs($item['weather']['temp'] - $temperature) < 4;
         // });
 
-        Storage::put('search/' . $hash, $flights->toJson());
+        // Storage::put('search/' . $hash, $flights->toJson());
 
         return $flights;
     }
