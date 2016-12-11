@@ -134,6 +134,8 @@ class Flights
         }
         // dd($flights);
 
+
+
         // Filter all flights which are longer than the return date
         $endDate->addDay(); // add support for flights on the endDate day itself
         $flights = $flights->filter(function ($item) use (&$endDate) {
@@ -161,9 +163,22 @@ class Flights
                 }
             }
             return $item;
-        })->filter(function ($item) use (&$temperature) {
-            return $temperature === null || abs($item['weather']['temp'] - $temperature) < 4;
         });
+
+
+        $tmp = [];
+        foreach ($flights as $flight) {
+            if (abs($flight['weather']['temp'] - $temperature) < 4) {
+                array_push($tmp, $flight);
+            }
+        }
+        $flights = collect($tmp);
+
+        // WTF IS DEZE SHIT!
+        // })->filter(function ($item) use (&$temperature) {
+        //     // return false;
+        //     return $temperature === null || abs($item['weather']['temp'] - $temperature) < 4;
+        // });
 
         Storage::put('search/' . $hash, $flights->toJson());
 

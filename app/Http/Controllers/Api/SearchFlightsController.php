@@ -21,6 +21,10 @@ class SearchFlightsController extends Controller
             $request->temperature ?? null
         );
 
+        // dd($response->toArray());
+
+
+
         return response()->json($response);
     }
 }
