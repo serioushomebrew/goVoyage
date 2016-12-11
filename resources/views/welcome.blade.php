@@ -207,12 +207,12 @@
         <div class="header">
           <h2>​Maar ik weet niks over de bestemmingen die GoVoyage voor mij heeft geselecteerd!</h2>
           <p>Klik op de bestemming naar jou keuze en ontdek! Sta midden op dat mooie plein of lig lekker op het strand. GoVoyage geeft jou de mogelijkheid om jouw bestemming van wel heel dichtbij te bekijken door middel van 360 graden foto&#39;s. GoVoyage vertelt jou de gemiddelde prijs van een biertje en Big Mac op bestemming, zodat je een idee krijgt van het prijspeil op jouw bestemming.</p>
-          <div class="underline"><i class="fa fa-image"></i></div>
+          <div class="underline"></div>
         </div>
         <div class="header">
           <h2>​Ja, ik ga boeken!</h2>
           <p>Nadat jij heel simpel jouw perfecte reis hebt geboekt kan het echte genieten beginnen. GoVoyage zoekt voor jou een mooie afspeellijst op Spotify om alvast helemaal in de stemming te komen voor jou reis. Stel al jouw vrienden op de hoogte van jouw aankomende vakantie door je reis te delen op social media.</p>
-          <div class="underline"><i class="fa fa-image"></i></div>
+          <div class="underline"></div>
         </div>
         <div class="header">
           <h2>​Wauw, mijn vakantie was geweldig! Wanneer gaan we weer?</h2>
@@ -231,8 +231,6 @@
 
         <div class="header">
           <h1>Meet the team</h1>
-          <p>TODO: explain the team (SHB mention? Sinus scroller?)</p>
-          <div class="underline"><i class="fa fa-users"></i></div>
         </div> <!-- end .container> .header -->
 
         <div class="row">
@@ -240,96 +238,89 @@
 
             <div class="col-sm-6 col-md-6 col-lg-3 info">
               <div class="member">
-                <img src="images/01.jpg" alt="">
+                <img src="images/peter.jpg" alt="">
                 <div class="details">
                   <div class="social icon">
                     <ul>
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-github"></i></a></li>
+                      <li><a href="https://linkedin.com/in/pschriever"><i class="fa fa-linkedin"></i></a></li>
+                      <li><a href="https://github.com/peterschriever"><i class="fa fa-github"></i></a></li>
                     </ul>
                   </div> <!-- end .icon -->
                 </div> <!-- end .details -->
               </div> <!-- end .member -->
               <div class="title">
-                <h4>Margery Key</h4>
-                <h5>Lead Developer</h5>
+                <h4>Peter Schriever</h4>
+                <h5>Developer</h5>
               </div> <!-- end .title -->
             </div> <!-- end .info (1) -->
 
             <div class="col-sm-6 col-md-6 col-lg-3 info">
               <div class="member">
-                <img src="images/01.jpg" alt="">
+                <img src="images/kevin.jpg" alt="">
                 <div class="details">
                   <div class="social icon">
                     <ul>
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                      <li><a href="#"><i class="fa fa-github"></i></a></li>
+                      <li><a href="https://nl.linkedin.com/in/kevin-van-der-burgt-ab356942"><i class="fa fa-linkedin"></i></a></li>
+                      <li><a href="https://github.com/kevinvdburgt/"><i class="fa fa-github"></i></a></li>
                     </ul>
                   </div> <!-- end .icon -->
                 </div> <!-- end .details -->
               </div> <!-- end .member -->
               <div class="title">
-                <h4>Margery Key</h4>
-                <h5>Lead Developer</h5>
+                <h4>Kevin van der Burgt</h4>
+                <h5>Developer</h5>
               </div> <!-- end .title -->
           </div> <!-- end .info (2) -->
 
           <div class="col-sm-6 col-md-6 col-lg-3 info">
             <div class="member">
-              <img src="images/01.jpg" alt="">
+              <img src="images/koen.jpeg" alt="">
               <div class="details">
                 <div class="social icon">
                   <ul>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href="#"><i class="fa fa-github"></i></a></li>
+                    <li><a href="https://nl.linkedin.com/in/koen-hendriks-90b7145a/en"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="https://github.com/koenhendriks/"><i class="fa fa-github"></i></a></li>
                   </ul>
                 </div> <!-- end .icon -->
               </div> <!-- end .details -->
             </div> <!-- end .member -->
             <div class="title">
-              <h4>Margery Key</h4>
-              <h5>Lead Developer</h5>
+              <h4>Koen Hendriks</h4>
+              <h5>Developer</h5>
             </div> <!-- end .title -->
         </div> <!-- end .info (3) -->
 
         <div class="col-sm-6 col-md-6 col-lg-3 info">
           <div class="member">
-            <img src="images/01.jpg" alt="">
+            <img src="images/joke.jpeg" alt="">
             <div class="details">
               <div class="social icon">
                 <ul>
-                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                  <li><a href="#"><i class="fa fa-github"></i></a></li>
+                  <li><a href="https://nl.linkedin.com/in/joke-de-haan-75293b27"><i class="fa fa-linkedin"></i></a></li>
                 </ul>
               </div> <!-- end .icon -->
             </div> <!-- end .details -->
           </div> <!-- end .member -->
           <div class="title">
-            <h4>Margery Key</h4>
-            <h5>Lead Developer</h5>
+            <h4>Joke de Haan</h4>
+            <h5>Marketing, Business, Analysing</h5>
           </div> <!-- end .title -->
       </div> <!-- end .info (4) -->
 
       <div style="text-align: center; width: 100%;" class="col-sm-6 col-md-6 col-lg-3 info">
         <div class="member">
-          <img src="images/01.jpg" alt="">
+          <img src="images/nils.jpg" alt="">
           <div class="details">
             <div class="social icon">
               <ul>
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                <li><a href="#"><i class="fa fa-github"></i></a></li>
+                <li><a href="https://nl.linkedin.com/in/bakkernils"><i class="fa fa-linkedin"></i></a></li>
               </ul>
             </div> <!-- end .icon -->
           </div> <!-- end .details -->
         </div> <!-- end .member -->
         <div class="title">
-          <h4>Margery Key</h4>
-          <h5>Lead Developer</h5>
+          <h4>Nils Bakker</h4>
+          <h5>Designer, SFX</h5>
         </div> <!-- end .title -->
     </div> <!-- end .info (5) -->
 
@@ -348,31 +339,19 @@
       <div class="download section-padding">
         <div class="container">
 
-          <div class="header">
+          <div class="header" style="text-align:center;">
             <h1>Download <strong>GoVoyage</strong></h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam voluptatum hic, facere adipisci, placeat ipsa corporis suscipit officiis labore ipsam, laudantium earum ducimus.</p>
-            <div class="underline"><i class="fa fa-cloud-download"></i></div>
+            <div class="underline"></div>
           </div> <!-- end .container > .header -->
 
           <div class="row download-area">
-
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-              <a href="#" class="btn btn-default custom-btn download-btn">
-                <i class="fa fa-mobile"></i>
-                <div class="app-download">
-                  <span>Download on the</span><strong>App Store</strong>
-                </div>
-              </a>
-            </div> <!-- end .download-area> .col-lg-3 (1) -->
-
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <a href="#" class="btn btn-default custom-btn download-btn">
               <img src="images/playstore.png" alt="">
               <div class="app-download">
                 <span>GET IT ON</span><strong>Google Play</strong>
               </div></a>
             </div> <!-- end .download-area> .col-lg-3 (2) -->
-
           </div> <!-- end .container > .row/.download-area -->
 
         </div> <!-- end .container -->
