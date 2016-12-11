@@ -163,7 +163,7 @@ class Flights
             return $item;
         })->filter(function ($item) use (&$temperature) {
             return $temperature === null || abs($item['weather']['temp'] - $temperature) < 4;
-        })->slice(0, 20);
+        });
 
         Storage::put('search/' . $hash, $flights->toJson());
 
